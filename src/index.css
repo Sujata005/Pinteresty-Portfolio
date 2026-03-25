@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-lavender-100 text-gray-800 font-poppins;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-30px) translateX(0px);
+  }
+  75% {
+    transform: translateY(-20px) translateX(-10px);
+  }
+}
+
+@keyframes blob-animation {
+  0%, 100% {
+    transform: scale(1) translateX(0) translateY(0);
+  }
+  33% {
+    transform: scale(1.1) translateX(30px) translateY(-20px);
+  }
+  66% {
+    transform: scale(0.9) translateX(-20px) translateY(30px);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.6s ease-in-out;
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.floating {
+  animation: floating 4s ease-in-out infinite;
+}
+
+.card {
+  @apply bg-white rounded-3xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
+}
+
+.btn-primary {
+  @apply px-6 py-3 bg-lavender-400 text-white rounded-2xl font-medium transition-all duration-300 hover:bg-accent-purple hover:shadow-lg active:scale-95;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-white text-lavender-600 border-2 border-lavender-400 rounded-2xl font-medium transition-all duration-300 hover:bg-lavender-50 hover:shadow-lg active:scale-95;
+}
+
+.btn-icon {
+  @apply flex items-center justify-center w-12 h-12 rounded-full bg-lavender-100 text-lavender-600 hover:bg-lavender-200 transition-all duration-300;
+}
+
+.tag {
+  @apply inline-block px-4 py-1 bg-lavender-100 text-lavender-700 rounded-full text-sm font-medium;
+}
+
+.navbar-link {
+  @apply px-4 py-2 rounded-2xl transition-all duration-300 hover:bg-white/30;
+}
+
+.navbar-link.active {
+  @apply bg-white text-lavender-600;
+}
