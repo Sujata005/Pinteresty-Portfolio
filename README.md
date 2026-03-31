@@ -123,9 +123,59 @@ The portfolio is fully responsive and includes:
 
 1. Replace all placeholder images with your actual photos
 2. Update personal information and content
-3. Connect the contact form to an email service (e.g., EmailJS)
+3. **Set up EmailJS for the contact form** (see below)
 4. Add links to your actual projects and social profiles
 5. Deploy to Vercel, Netlify, or GitHub Pages
+
+### 📧 Setting up EmailJS for Contact Form
+
+The contact form is already integrated with EmailJS. To enable email sending:
+
+1. **Create an EmailJS Account:**
+   - Go to [https://www.emailjs.com/](https://www.emailjs.com/)
+   - Sign up for a free account
+
+2. **Set up Email Service:**
+   - In your EmailJS dashboard, go to "Email Services"
+   - Add a new service (Gmail, Outlook, Yahoo, etc.)
+   - Follow the setup instructions for your email provider
+
+3. **Create Email Template:**
+   - Go to "Email Templates" in your dashboard
+   - Create a new template with these variables:
+     ```
+     Subject: New Contact Form Message from {{from_name}}
+
+     From: {{from_name}} ({{from_email}})
+
+     Message:
+     {{message}}
+
+     ---
+     This message was sent from your portfolio contact form.
+     ```
+
+4. **Get Your Credentials:**
+   - Service ID: Found in Email Services → [Your Service] → Service ID
+   - Template ID: Found in Email Templates → [Your Template] → Template ID
+   - Public Key: Found in Account → General → Public Key
+
+5. **Configure Environment Variables:**
+   - Copy `.env.example` to `.env`
+   - Update the values in `.env`:
+     ```
+     VITE_EMAILJS_SERVICE_ID=your_actual_service_id
+     VITE_EMAILJS_TEMPLATE_ID=your_actual_template_id
+     VITE_EMAILJS_PUBLIC_KEY=your_actual_public_key
+     ```
+
+6. **Test the Form:**
+   - Start the development server: `npm run dev`
+   - Go to the Contact section
+   - Fill out and submit the form
+   - Check your email for the message
+
+**Note:** The `.env` file is already added to `.gitignore` for security.
 
 ## 📦 Dependencies
 

@@ -48,6 +48,11 @@ export default function Certifications() {
     exit: { opacity: 0, scale: 0.8, transition: { duration: 0.3 } }
   }
 
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  }
+
   const breakpointColumnsObj = {
     default: 3,
     1100: 3,
@@ -56,14 +61,55 @@ export default function Certifications() {
   }
 
   return (
-    <section className="relative min-h-screen py-24 px-4 overflow-hidden">
+    <motion.section
+      className="relative min-h-screen py-24 px-4 overflow-hidden mt-20"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={sectionVariants}
+    >
       {/* Background decorations */}
-      <div className="absolute -top-16 -left-16 w-56 h-56 rounded-full bg-lavender-200/40 blur-3xl" />
-      <div className="absolute top-20 right-8 w-44 h-44 rounded-full bg-accent-purple/30 blur-3xl" />
-      <div className="absolute bottom-10 left-20 w-52 h-52 rounded-full bg-lavender-300/30 blur-3xl" />
+      <motion.div
+        className="absolute -top-16 -left-16 w-56 h-56 rounded-full bg-lavender-200/40 blur-3xl"
+        animate={{
+          y: [0, -20, 0],
+          rotate: [0, 5, -5, 0],
+          transition: {
+            duration: 8,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          },
+        }}
+      />
+      <motion.div
+        className="absolute top-20 right-8 w-44 h-44 rounded-full bg-accent-purple/30 blur-3xl"
+        animate={{
+          y: [0, 15, -15, 0],
+          x: [0, -10, 10, 0],
+          transition: {
+            duration: 10,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 2,
+          },
+        }}
+      />
+      <motion.div
+        className="absolute bottom-10 left-20 w-52 h-52 rounded-full bg-lavender-300/30 blur-3xl"
+        animate={{
+          y: [0, -25, 0],
+          scale: [1, 1.1, 1],
+          transition: {
+            duration: 12,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 4,
+          },
+        }}
+      />
 
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-5xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-lavender-700 via-lavender-600 to-accent-purple bg-clip-text text-transparent">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-lavender-700 via-lavender-600 to-accent-purple bg-clip-text text-transparent">
           Certifications
         </h2>
 
@@ -79,33 +125,51 @@ export default function Certifications() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="mb-4"
+              className="mb-6"
+              whileHover={{ scale: 1.03, y: -2 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
             >
-              <div className="bg-white rounded-xl shadow-md overflow-hidden hover:scale-105 hover:shadow-2xl hover:shadow-lavender-400/50 transition-all duration-300 border border-lavender-100 relative">
+              <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg hover:shadow-lavender-400/50 transition-all duration-300 border border-lavender-100 relative cursor-pointer">
                 {/* Badge Icon */}
-                <div className="absolute top-3 right-3 z-10 bg-lavender-500 text-white p-2 rounded-full shadow-lg">
+                <motion.div
+                  className="absolute top-3 right-3 z-10 bg-lavender-500 text-white p-2 rounded-full shadow-lg icon-hover"
+                  whileHover={{ scale: 1.1, rotate: 10 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <FiAward className="w-4 h-4" />
-                </div>
+                </motion.div>
                 <div className="relative overflow-hidden cursor-pointer" onClick={() => setSelectedCert(cert)}>
-                  <img
+                  <motion.img
                     src={cert.image}
                     alt={cert.title}
                     className="w-full h-48 object-cover hover:scale-110 transition-transform duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
                   />
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-lavender-800 mb-2">{cert.title}</h3>
                   <p className="text-lavender-600 mb-1">{cert.issuer}</p>
                   <p className="text-sm text-lavender-500 mb-4">{cert.date}</p>
-                  <a
+                  <motion.a
                     href={cert.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-lavender-500 text-white rounded-lg hover:bg-lavender-600 transition-colors duration-300"
+                    className="inline-flex items-center px-4 py-2 bg-lavender-500 text-white rounded-lg hover:bg-lavender-600 transition-all duration-300 cursor-pointer hover:shadow-lg"
+                    whileHover={{ scale: 1.05, y: -1 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
                   >
                     View Certificate
-                    <FiExternalLink className="ml-2 w-4 h-4" />
-                  </a>
+                    <motion.div
+                      className="ml-2 icon-hover"
+                      whileHover={{ x: 2 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <FiExternalLink className="w-4 h-4" />
+                    </motion.div>
+                  </motion.a>
                 </div>
               </div>
             </motion.div>
@@ -130,12 +194,15 @@ export default function Certifications() {
                 className="relative max-w-4xl max-h-full bg-white rounded-xl overflow-hidden shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
-                <button
-                  className="absolute top-4 right-4 z-10 bg-lavender-500 text-white p-2 rounded-full hover:bg-lavender-600 transition-colors shadow-lg"
+                <motion.button
+                  className="absolute top-4 right-4 z-10 bg-lavender-500 text-white p-2 rounded-full hover:bg-lavender-600 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl"
                   onClick={() => setSelectedCert(null)}
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <FiX className="w-5 h-5" />
-                </button>
+                </motion.button>
                 <img
                   src={selectedCert.image}
                   alt={selectedCert.title}
@@ -160,6 +227,6 @@ export default function Certifications() {
           )}
         </AnimatePresence>
       </div>
-    </section>
+    </motion.section>
   )
 }
