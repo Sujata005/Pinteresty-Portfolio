@@ -2,11 +2,13 @@ import { FiGithub, FiExternalLink } from "react-icons/fi";
 import CafeGif from "../assets/gifs/Higa.gif";
 import ResumeGif from "../assets/gifs/Resume.gif";
 import physioImg from "../assets/gifs/physio.gif";
+import ToDoImg from "../assets/gifs/ToDo.gif";
 import botImg from "../assets/images/bot.png";
 import sentimentImg from "../assets/images/sentiment.png";
 import mailImg from "../assets/images/mail.png";
 import calcImg from "../assets/images/calc.png";
 import wordImg from "../assets/images/word.png";
+import passImg from "../assets/images/pass.png";
 export default function Projects() {
   const featured = [
     {
@@ -34,19 +36,19 @@ export default function Projects() {
   ];
 
   const academic = [
-    { title: "🏥 PhysioAI", image: physioImg },
-    { title: "🤖 Discord Chatbot", image: botImg },
-    { title: "📊 Sentiment Analysis", image: sentimentImg },
-    { title: "📧 Mail Automation", image: mailImg },
-    { title: "🧮 Calculator", image: calcImg },
-    { title: "✅ ToDo App", image: calcImg },
-    { title: "☁️ Word Cloud", image: wordImg },
-    { title: "🔐 Password Generator", image: calcImg },
+    { title: "🏥 PhysioAI", image: physioImg, github: "https://github.com/Sujata005/Pinteresty-Portfolio"},
+    { title: "🤖 Discord Chatbot", image: botImg, github: "https://github.com/Sujata005/Pinteresty-Portfolio"},
+    { title: "📊 Sentiment Analysis", image: sentimentImg, github: "https://github.com/Sujata005/Pinteresty-Portfolio"},
+    { title: "📧 Mail Automation", image: mailImg, github: "https://github.com/Sujata005/Pinteresty-Portfolio"},
+    { title: "🧮 Calculator", image: calcImg, github: "https://github.com/Sujata005/Calculator", live: "https://sujata005.github.io/Calculator/"},
+    { title: "✅ ToDo App", image: ToDoImg, github: "https://github.com/Sujata005/ToDo-SIte", live: "https://sujata005.github.io/ToDo-SIte/"},
+    { title: "☁️ Word Cloud", image: wordImg, github: "https://github.com/Sujata005/Pinteresty-Portfolio", live: "https://pinteresty-portfolio.vercel.app/"},
+    { title: "🔐 Password Generator", image: passImg, github: "https://github.com/Sujata005/password-generator", live: "https://sujata005.github.io/password-generator/"},
   ];
 
   const others = [
-    { title: "💬 WhatsApp Generator" },
-    { title: "🧠 Career Path Analyzer" },
+    { title: "💬 WhatsApp Generator", github: "https://github.com/Sujata005/Pinteresty-Portfolio", live: "https://pinteresty-portfolio.vercel.app/" },
+    { title: "🧠 Career Path Analyzer", github: "https://github.com/Sujata005/Pinteresty-Portfolio", live: "https://pinteresty-portfolio.vercel.app/" },
   ];
 
    return (
@@ -90,6 +92,10 @@ export default function Projects() {
             <div key={i} className="bg-white rounded-lg shadow p-3 hover:shadow-md transition">
               <img src={p.image} className="rounded mb-2 h-32 w-full object-cover" />
               <p className="text-sm font-medium">{p.title}</p>
+              <div className="flex gap-3 mt-2">
+                  <a href={p.github} target="_blank">GitHub</a>
+                  <a href={p.live} target="_blank">Live Demo</a>
+                </div>
             </div>
           ))}
         </div>
